@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For My Nani ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin:0;
+    font-family: 'Comic Sans MS', cursive;
+    background:black;
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+/* Starry Background */
+body::before {
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:url('https://www.transparenttextures.com/patterns/stardust.png');
+    animation: moveStars 60s linear infinite;
+    z-index:-1;
+}
+@keyframes moveStars {
+    from {background-position:0 0;}
+    to {background-position:1000px 1000px;}
+}
+
+button {
+    padding:15px 30px;
+    font-size:20px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    margin:10px;
+    transition:0.3s;
+}
+
+#yesBtn { background:#ff4b5c; color:white; }
+#noBtn { background:white; color:#ff4b5c; }
+
+.section { display:none; padding:40px 20px; }
+
+.petal {
+    position:fixed;
+    top:-10px;
+    font-size:18px;
+    animation: fall linear infinite;
+}
+@keyframes fall {
+    to { transform: translateY(100vh); }
+}
+
+.timeline div {
+    background:rgba(255,255,255,0.1);
+    padding:15px;
+    margin:10px auto;
+    border-radius:15px;
+    max-width:600px;
+}
+
+.gallery img {
+    width:200px;
+    margin:10px;
+    border-radius:20px;
+}
+
+#countdown {
+    font-size:22px;
+    margin-top:20px;
+}
+
+.envelope {
+    margin-top:30px;
+    font-size:24px;
+    cursor:pointer;
+}
+
+#letter {
+    max-width:700px;
+    margin:auto;
+    font-size:20px;
+    white-space:pre-line;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Proposal Screen -->
+<div id="proposal">
+    <h1>Nani ❤️</h1>
+    <h2>Will you be my Valentine?</h2>
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">No 😢</button>
+</div>
+
+<!-- Main Content -->
+<div class="section" id="mainContent">
+
+<h1>You said YES 😍</h1>
+
+<img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" width="250">
+
+<h2>Since September 2023 🌙</h2>
+
+<div class="timeline">
+    <div>🌙 September 2023 — The night everything started</div>
+    <div>📞 Our first endless late-night talk</div>
+    <div>🎧 The first time your voice melted my heart</div>
+    <div>💞 When distance became powerless against us</div>
+    <div>❤️ Every “don’t hang up yet” moment</div>
+</div>
+
+<h2>Countdown Until I Finally Hold You 🤍</h2>
+<div id="countdown"></div>
+
+<h2>Our Memories 📸</h2>
+<div class="gallery">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+</div>
+
+<div class="envelope" onclick="openLetter()">
+💌 Click to Open My Hidden Letter
+</div>
+
+<div id="letter"></div>
+
+</div>
+
+<!-- Hidden Music -->
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/
+https://youtu.be/H2f7MZaw3Yo?si=qJwEHBlQoZ1m__aY autoplay=1&loop=1&playlist=YOUR_VIDEO_ID"
+frameborder="0" allow="autoplay">
+</iframe>
+
+<script>
+
+let yesBtn = document.getElementById("yesBtn");
+let noBtn = document.getElementById("noBtn");
+let proposal = document.getElementById("proposal");
+let mainContent = document.getElementById("mainContent");
+
+let size = 20;
+
+noBtn.onclick = function(){
+    size += 10;
+    yesBtn.style.fontSize = size + "px";
+}
+
+yesBtn.onclick = function(){
+    proposal.style.display="none";
+    mainContent.style.display="block";
+    createPetals();
+    fakeCall();
+}
+
+/* Heart Rain */
+function createPetals(){
+    for(let i=0;i<70;i++){
+        let petal=document.createElement("div");
+        petal.className="petal";
+        petal.innerHTML="❤️ Nani";
+        petal.style.left=Math.random()*window.innerWidth+"px";
+        petal.style.animationDuration=(Math.random()*3+2)+"s";
+        document.body.appendChild(petal);
+    }
+}
+
+/* Countdown to October 1 (change date if needed) */
+let meetingDate = new Date("October 1, 2026 00:00:00").getTime();
+let x = setInterval(function(){
+    let now = new Date().getTime();
+    let distance = meetingDate - now;
+    let days = Math.floor(distance/(1000*60*60*24));
+    document.getElementById("countdown").innerHTML =
+        days + " days until I finally see you ❤️";
+},1000);
+
+/* Fake Call */
+function fakeCall(){
+    setTimeout(()=>{
+        alert("📞 Incoming Call...\nNani ❤️");
+    },2000);
+}
+
+/* Love Letter Typing */
+function openLetter(){
+let message = 
+"My dearest Nani,\n\n" +
+"Since September 2023, my nights have belonged to you.\n" +
+"Every long conversation, every sleepy laugh, every silence where we just breathe together — those are my favorite memories.\n\n" +
+"Distance tried to test us, but it never understood something…\n" +
+"I don’t just love you from afar.\n" +
+"I feel you in my heartbeat.\n\n" +
+"When I listen to Ma Mare Pani, I see us.\n" +
+"I imagine October — the moment I finally hold you instead of imagining it.\n\n" +
+"You are my peace.\nMy comfort.\nMy forever person.\n\n" +
+"No matter how far, no matter how long — I am yours.\n\n" +
+"Forever yours,\nYour love ❤️";
+
+let i=0;
+let speed=40;
+function typeWriter(){
+    if(i<message.length){
+        document.getElementById("letter").innerHTML+=message.charAt(i);
+        i++;
+        setTimeout(typeWriter,speed);
+    }
+}
+typeWriter();
+}
+
+</script>
+
+</body>
+</html>
